@@ -1,0 +1,10 @@
+{
+  "name": "dev-${localWorkspaceFolderBasename}",
+  "dockerComposeFile": "../podman/podman-compose.backend.yml",
+  "service": "api",
+  "workspaceFolder": "/workspaces/app",
+  "updateRemoteUserUID": false,
+  "remoteEnv": {
+    "VSCODE_SERVER_DIR": "/vscode/vscode-server"
+  }
+}
