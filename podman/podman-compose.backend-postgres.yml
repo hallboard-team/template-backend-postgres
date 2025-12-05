@@ -3,7 +3,7 @@ version: "3.9"
 services:
   api:
     image: ghcr.io/hallboard-team/dotnet-v${DOTNET_VERSION:-10.0}:latest
-    container_name: ${COMPOSE_PROJECT_NAME:-template_backend_postgres}_api
+    container_name: ${CONTAINER_NAME:-template}_api_postgres-v${POSTGRES_VERSION:-17}
 
     user: "0:0"
     working_dir: /workspaces/app
@@ -18,9 +18,9 @@ services:
 
       ConnectionStrings__Default: >
         Host=db;Port=5432;
-        Database=${DB_NAME:-backend_postgres_db};
-        Username=${DB_USER:-backend_postgres_user};
-        Password=${DB_PASSWORD:-backend_postgres_password};
+        Database=${DB_NAME:-template_backend_db};
+        Username=${DB_USER:-template_backend_user};
+        Password=${DB_PASSWORD:-template_backend_password};
         Include Error Detail=true
 
     ports:
@@ -38,12 +38,12 @@ services:
 
   db:
     image: docker.io/library/postgres:${POSTGRES_VERSION:-17}-alpine
-    container_name: ${COMPOSE_PROJECT_NAME:-template_backend_postgres}_db
+    container_name: ${CONTAINER_NAME:-template}-backend_db
 
     environment:
-      POSTGRES_USER: ${DB_USER:-backend_postgres_user}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-backend_postgres_password}
-      POSTGRES_DB: ${DB_NAME:-backend_postgres_db}
+      POSTGRES_USER: ${DB_USER:-template_backend_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-template_backend_password}
+      POSTGRES_DB: ${DB_NAME:-template_backend_db}
 
     ports:
       - "${DB_HOST_PORT:-5433}:5432"
@@ -55,7 +55,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "pg_isready -U ${DB_USER:-backend_postgres_user} -d ${DB_NAME:-backend_postgres_db}"
+          "pg_isready -U ${DB_USER:-template_backend_user} -d ${DB_NAME:-template_backend_db}"
         ]
       interval: 5s
       timeout: 3s

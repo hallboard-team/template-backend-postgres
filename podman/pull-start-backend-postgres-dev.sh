@@ -49,12 +49,12 @@ DB_USER="${5:-${DB_USER:-backend_postgres_user}}"
 DB_PASSWORD="${6:-${DB_PASSWORD:-backend_postgres_password}}"
 DB_NAME="${7:-${DB_NAME:-backend_postgres_db}}"
 
-COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME:-template_backend_postgres}"
+CONTAINER_NAME="${CONTAINER_NAME:-template_backend_postgres}"
 
 IMAGE="ghcr.io/hallboard-team/dotnet-v${DOTNET_VERSION}:latest"
 COMPOSE_FILE="podman-compose.backend-postgres.yml"
 
-API_CONTAINER_NAME="${COMPOSE_PROJECT_NAME}_api"
+API_CONTAINER_NAME="${CONTAINER_NAME}_api"
 
 # -----------------------------
 # Fix VS Code shared cache permissions
@@ -91,7 +91,7 @@ fi
 
 echo
 echo "🚀 Starting backend-postgres template stack:"
-echo "   Project:         ${COMPOSE_PROJECT_NAME}"
+echo "   Project:         ${CONTAINER_NAME}"
 echo "   .NET SDK:        ${DOTNET_VERSION}"
 echo "   PostgreSQL:      ${POSTGRES_VERSION}"
 echo "   API port:        ${API_PORT}"
@@ -103,7 +103,7 @@ echo
 # -----------------------------
 # Start the stack
 # -----------------------------
-if COMPOSE_PROJECT_NAME="$COMPOSE_PROJECT_NAME" \
+if CONTAINER_NAME="$CONTAINER_NAME" \
    API_PORT="$API_PORT" \
    DOTNET_VERSION="$DOTNET_VERSION" \
    POSTGRES_VERSION="$POSTGRES_VERSION" \
@@ -111,7 +111,7 @@ if COMPOSE_PROJECT_NAME="$COMPOSE_PROJECT_NAME" \
    DB_USER="$DB_USER" \
    DB_PASSWORD="$DB_PASSWORD" \
    DB_NAME="$DB_NAME" \
-   podman-compose -p "$COMPOSE_PROJECT_NAME" -f "$COMPOSE_FILE" up -d; then
+   podman-compose -p "$CONTAINER_NAME" -f "$COMPOSE_FILE" up -d; then
 
   if podman ps --filter "name=${API_CONTAINER_NAME}" --format '{{.Names}}' | grep -q "${API_CONTAINER_NAME}"; then
     echo "✅ API container '${API_CONTAINER_NAME}' running on port ${API_PORT}"
