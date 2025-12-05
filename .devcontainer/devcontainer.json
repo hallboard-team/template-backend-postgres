@@ -1,6 +1,6 @@
 {
   "name": "dev-${localWorkspaceFolderBasename}",
-  "dockerComposeFile": "../podman/podman-compose.backend.yml",
+  "dockerComposeFile": "../podman/podman-compose.backend-postgres.yml",
   "service": "api",
   "workspaceFolder": "/workspaces/app",
   "updateRemoteUserUID": false,
