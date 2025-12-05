@@ -1,7 +1,7 @@
 {
   "name": "dev-${localWorkspaceFolderBasename}",
   "dockerComposeFile": "../podman/podman-compose.backend-postgres.yml",
-  "service": "api",
+  "service": "api-postgres",
   "workspaceFolder": "/workspaces/app",
   "shutdownAction": "stopCompose",
   "updateRemoteUserUID": false,
