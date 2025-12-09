@@ -1,6 +1,6 @@
 #!/bin/bash
 # -----------------------------
-# Pull & Start Podman Compose for .NET + PostgreSQL backend template
+# Pull & Start Docker Compose for .NET + PostgreSQL backend template
 #
 # Usage:
 #   ./pull-start-backend-postgres-dev.sh [api_port] [dotnet_version] [postgres_version] [db_host_port] [db_user] [db_password] [db_name]
@@ -52,7 +52,7 @@ DB_NAME="${7:-${DB_NAME:-backend_postgres_db}}"
 CONTAINER_NAME="${CONTAINER_NAME:-template_backend_postgres}"
 
 IMAGE="ghcr.io/hallboard-team/dotnet-v${DOTNET_VERSION}:latest"
-COMPOSE_FILE="podman-compose.backend-postgres.yml"
+COMPOSE_FILE="docker-compose.backend-postgres.yml"
 
 API_CONTAINER_NAME="${CONTAINER_NAME}_api"
 
@@ -66,11 +66,11 @@ chown -R 1000:1000 ~/.cache/vscode-server-shared
 # -----------------------------
 # Ensure .NET SDK dev image exists
 # -----------------------------
-if podman image exists "$IMAGE"; then
+if docker image exists "$IMAGE"; then
   echo "🧱 Found dev image '$IMAGE' locally — skipping pull."
 else
   echo "📥 Pulling dev image '$IMAGE' from GHCR..."
-  if ! podman pull "$IMAGE"; then
+  if ! docker pull "$IMAGE"; then
     echo "❌ Failed to pull '$IMAGE'. Check GHCR authentication."
     exit 1
   fi
@@ -111,9 +111,9 @@ if CONTAINER_NAME="$CONTAINER_NAME" \
    DB_USER="$DB_USER" \
    DB_PASSWORD="$DB_PASSWORD" \
    DB_NAME="$DB_NAME" \
-   podman-compose -p "$CONTAINER_NAME" -f "$COMPOSE_FILE" up -d; then
+   docker-compose -p "$CONTAINER_NAME" -f "$COMPOSE_FILE" up -d; then
 
-  if podman ps --filter "name=${API_CONTAINER_NAME}" --format '{{.Names}}' | grep -q "${API_CONTAINER_NAME}"; then
+  if docker ps --filter "name=${API_CONTAINER_NAME}" --format '{{.Names}}' | grep -q "${API_CONTAINER_NAME}"; then
     echo "✅ API container '${API_CONTAINER_NAME}' running on port ${API_PORT}"
     echo "✅ PostgreSQL running on host port ${DB_HOST_PORT}"
   else
@@ -121,6 +121,6 @@ if CONTAINER_NAME="$CONTAINER_NAME" \
     exit 1
   fi
 else
-  echo "❌ podman-compose failed."
+  echo "❌ docker-compose failed."
   exit 1
 fi
