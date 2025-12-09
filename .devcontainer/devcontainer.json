@@ -15,11 +15,15 @@
         "ms-dotnettools.csharp",
         "mtxr.sqltools",
         "mtxr.sqltools-driver-pg",
-        "github.vscode-pull-request-github",
-        "adrianwilczynski.user-secrets",
-        "maptz.regionfolder",
         "nurlybekovnt.csharpextensions",
-        "patcx.vscode-nuget-gallery"
+        "adrianwilczynski.user-secrets",
+        
+        "patcx.vscode-nuget-gallery",
+        "github.vscode-pull-request-github",
+        "maptz.regionfolder",
+        "PKief.material-icon-theme",
+        "johnpapa.vscode-peacock",
+        "Gruntfuggly.todo-tree"
       ]
     }
   }
