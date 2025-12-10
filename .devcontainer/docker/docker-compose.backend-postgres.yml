@@ -5,9 +5,6 @@ services:
     image: ghcr.io/hallboard-team/dotnet-v${DOTNET_VERSION:-10.0}:latest
     container_name: ${CONTAINER_NAME:-template}-api_PG-v${POSTGRES_VERSION:-17}-dev
 
-    # Use the non-root "vscode" user from the image (UID 1000)
-    # user: "0:0"   # ❌ DO NOT override to root, it breaks file perms
-
     working_dir: /workspaces/app
 
     volumes:
