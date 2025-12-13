@@ -51,7 +51,7 @@ DB_NAME="${7:-${DB_NAME:-backend_postgres_db}}"
 
 CONTAINER_NAME="${CONTAINER_NAME:-template_backend_postgres}"
 
-IMAGE="ghcr.io/hallboard-team/dotnet-v${DOTNET_VERSION}:latest"
+IMAGE="ghcr.io/hallboard-team/dotnet:${DOTNET_VERSION}-sdk"
 COMPOSE_FILE="docker-compose.backend-postgres.yml"
 
 API_CONTAINER_NAME="${CONTAINER_NAME}_api"
