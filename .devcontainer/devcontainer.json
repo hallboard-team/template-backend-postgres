@@ -17,8 +17,9 @@
         "mtxr.sqltools-driver-pg",
         "nurlybekovnt.csharpextensions",
         "adrianwilczynski.user-secrets",
-        
         "patcx.vscode-nuget-gallery",
+        
+        "openai.chatgpt",
         "github.vscode-pull-request-github",
         "maptz.regionfolder",
         "PKief.material-icon-theme",
