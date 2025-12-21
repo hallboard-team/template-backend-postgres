@@ -12,12 +12,15 @@ services:
       - ../../:/workspaces/app:Z
       # shared VS Code server cache
       - ${HOME}/.cache/vscode-server-shared:/home/vscode/.vscode-server-shared:Z
+      # codex auth/cache
+      - ${HOME}/.cache/codex:/root/.codex:Z
 
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://0.0.0.0:5000
 
       VSCODE_SERVER_DIR: /home/vscode/.vscode-server-shared
+      CODEX_HOME: /root/.codex
 
       ConnectionStrings__Default: "Host=db;Port=5432;Database=${DB_NAME:-template_backend_db};Username=${DB_USER:-template_backend_user};Password=${DB_PASSWORD:-template_backend_password};Include Error Detail=true"
 
