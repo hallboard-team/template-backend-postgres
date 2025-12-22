@@ -3,7 +3,7 @@ version: "3.9"
 services:
   api-postgres:
     image: ghcr.io/hallboard-team/dotnet:${DOTNET_VERSION:-10.0}-sdk
-    container_name: ${CONTAINER_NAME:-template}-api_PG-v${POSTGRES_VERSION:-17}-dev
+    container_name: ${COMPOSE_PROJECT_NAME:-template_backend_postgres}-api_PG-v${POSTGRES_VERSION:-17}-dev
 
     working_dir: /workspaces/app
 
@@ -39,7 +39,7 @@ services:
 
   db:
     image: postgres:${POSTGRES_VERSION:-17}-alpine
-    container_name: ${CONTAINER_NAME:-template}_db_PG-v${POSTGRES_VERSION:-17}
+    container_name: ${COMPOSE_PROJECT_NAME:-template_backend_postgres}_db_PG-v${POSTGRES_VERSION:-17}
 
     environment:
       POSTGRES_USER: ${DB_USER:-template_backend_user}
