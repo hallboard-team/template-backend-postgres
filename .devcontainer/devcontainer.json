@@ -1,5 +1,5 @@
 {
-  "name": "dev-${localWorkspaceFolderBasename}",
+  "name": "dev-${localWorkspaceFolderBasename}_back-pg",
   "dockerComposeFile": "./docker/docker-compose.backend-postgres.yml",
   "service": "api-postgres",
   "workspaceFolder": "/workspaces/app",
