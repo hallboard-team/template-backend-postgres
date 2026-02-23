@@ -54,6 +54,8 @@ services:
       POSTGRES_DB: ${COMPOSE_PROJECT_NAME:-template}
 
     ports:
+      # Host access (e.g., DBeaver on your machine): connect to `localhost:${DB_HOST_PORT}`.
+      # Container-to-container access (e.g., the API container): connect to `Host=db;Port=5432`.
       - "${DB_HOST_PORT:-5433}:5432"
 
     volumes:
