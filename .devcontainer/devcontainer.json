@@ -12,20 +12,9 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-dotnettools.csdevkit",
         "ms-dotnettools.csharp",
-        "mtxr.sqltools",
-        "mtxr.sqltools-driver-pg",
-        "nurlybekovnt.csharpextensions",
-        "adrianwilczynski.user-secrets",
-        "patcx.vscode-nuget-gallery",
-        
-        "openai.chatgpt",
-        "github.vscode-pull-request-github",
-        "maptz.regionfolder",
-        "PKief.material-icon-theme",
-        "johnpapa.vscode-peacock",
-        "Gruntfuggly.todo-tree"
+        "Angular.ng-template",
+        "TerenceCarrera.gitea"
       ]
     }
   }
